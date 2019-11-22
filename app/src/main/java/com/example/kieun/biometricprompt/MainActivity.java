@@ -2,6 +2,7 @@ package com.example.kieun.biometricprompt;
 
 import android.annotation.SuppressLint;
 import androidx.biometric.BiometricManager;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -294,6 +295,11 @@ public class MainActivity extends AppCompatActivity
      */
     private boolean canAuthenticateWithBiometrics() {
         // Check whether the fingerprint can be used for authentication (Android M to P)
+        PackageManager pm = getBaseContext().getPackageManager();
+        boolean mHasBiometric1 = pm.hasSystemFeature(PackageManager.FEATURE_FINGERPRINT);
+        boolean mHasBiometric2 =  pm.hasSystemFeature(PackageManager.FEATURE_FACE);
+        boolean mHasBiometric3 = pm.hasSystemFeature(PackageManager.FEATURE_IRIS);
+        Log.i("SampleTest", Boolean.toString(mHasBiometric1)+ Boolean.toString(mHasBiometric2)+ Boolean.toString(mHasBiometric3));
         if (Build.VERSION.SDK_INT < 29) {
             FingerprintManagerCompat fingerprintManagerCompat = FingerprintManagerCompat.from(this);
             return fingerprintManagerCompat.hasEnrolledFingerprints() && fingerprintManagerCompat.isHardwareDetected();
