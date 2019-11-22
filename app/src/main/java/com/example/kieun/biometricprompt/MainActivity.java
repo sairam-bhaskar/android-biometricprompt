@@ -1,7 +1,7 @@
 package com.example.kieun.biometricprompt;
 
 import android.annotation.SuppressLint;
-import android.hardware.biometrics.BiometricManager;
+import androidx.biometric.BiometricManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
